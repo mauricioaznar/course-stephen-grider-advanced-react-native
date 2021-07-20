@@ -14,9 +14,9 @@ const SLIDE_DATA = [
     },
 ]
 
-const WelcomeScreen = () => {
+const WelcomeScreen = ({ navigation }) => {
     const onComplete = () => {
-
+        navigation.navigate('AuthScreen')
     }
 
     return (
