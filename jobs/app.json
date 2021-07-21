@@ -23,14 +23,23 @@
       "adaptiveIcon": {
         "foregroundImage": "./assets/adaptive-icon.png",
         "backgroundColor": "#FFFFFF"
-      }
+      },
+      "package": "com.mau.Jobs"
     },
     "androidStatusBar": {
       "barStyle": "light-content",
-      "backgroundColor": "#0A48A5"
+      "backgroundColor": "#6a51ae"
+    },
+    "androidNavigationBar": {
+      "backgroundColor": "#6a51ae"
     },
     "web": {
       "favicon": "./assets/favicon.png"
-    }
+    },
+    "facebookScheme": "fb335143281555581",
+    "facebookAppId": "335143281555581",
+    "facebookDisplayName": "jobs",
+    "facebookAdvertiserIDCollectionEnabled": true,
+    "facebookAutoLogAppEventsEnabled": true
   }
 }

@@ -1,7 +1,8 @@
-import React from 'react';
-import {SafeAreaView, StyleSheet, Text} from "react-native";
+import React, {useState} from 'react';
+import {AsyncStorage, SafeAreaView, StyleSheet, Text} from "react-native";
 import {StatusBar} from "expo-status-bar";
 import Slides from "../components/Slides";
+import AppLoading from "expo-app-loading";
 
 const SLIDE_DATA = [
     {
@@ -15,8 +16,32 @@ const SLIDE_DATA = [
 ]
 
 const WelcomeScreen = ({ navigation }) => {
+    const [loading, setLoading] = useState(true)
+
     const onComplete = () => {
         navigation.navigate('AuthScreen')
+    }
+
+    const getToken = () => {
+
+        return new Promise (async (resolve, reject) => {
+            const token = await AsyncStorage.getItem('fb_token')
+            setTimeout(() => {
+                if (token) {
+                    resolve(token)
+                } else {
+                    reject('Error')
+                }
+            }, 2000)
+        })
+    }
+
+    if (loading) {
+        return <AppLoading
+            startAsync={getToken}
+            onFinish={() => setLoading(false)}
+            onError={console.warn}
+        />
     }
 
     return (

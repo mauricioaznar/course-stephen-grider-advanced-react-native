@@ -1,11 +1,11 @@
 import React from 'react';
-import { Dimensions, ScrollView, StyleSheet, Text, View} from "react-native";
+import {Dimensions, ScrollView, StyleSheet, Text, View} from "react-native";
 import {Button} from 'react-native-elements'
 import PropTypes from 'prop-types'
 
 const SCREEN_WIDTH = Dimensions.get('window').width
 
-const renderSlides = (data) => {
+const renderSlides = (data, onComplete) => {
     return data.map((item, index) => {
         return (
             <View key={item.text} style={{...styles.slide, backgroundColor: item.backgroundColor}}>
@@ -14,7 +14,11 @@ const renderSlides = (data) => {
                 </Text>
                 {
                     index === data.length - 1
-                    ? <Button containerStyle={styles.containerButtonStyle} buttonStyle={styles.buttonStyle} title={'Button'} onPress={() => { }} > </Button>
+                        ? <Button
+                            containerStyle={styles.containerButtonStyle}
+                            buttonStyle={styles.buttonStyle}
+                            title={'Button'}
+                            onPress={onComplete} > </Button>
                         : undefined
                 }
             </View>
@@ -22,7 +26,7 @@ const renderSlides = (data) => {
     })
 }
 
-const Slides = ({data}) => {
+const Slides = ({data, onComplete}) => {
     return (
 
         <ScrollView
@@ -30,7 +34,7 @@ const Slides = ({data}) => {
             contentContainerStyle={{justifyContent: 'center', alignItems: 'center'}}
             pagingEnabled
         >
-            {renderSlides(data)}
+            {renderSlides(data, onComplete)}
         </ScrollView>
     );
 };
