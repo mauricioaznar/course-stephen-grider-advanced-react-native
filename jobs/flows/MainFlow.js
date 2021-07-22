@@ -13,23 +13,8 @@ function MainFlow() {
 
     return (
         <MainFlowNavigator.Navigator
-            initialRouteName="DeckScreen"
+            initialRouteName="MapScreen"
         >
-            <MainFlowNavigator.Screen
-                name="DeckScreen"
-                component={DeckScreen}
-                options={{
-                    title: "Deck",
-                    tabBarIcon: ({color, size}) => {
-                        return (<Icon
-                            type="material"
-                            name="storage"
-                            size={size}
-                            color={color}
-                        />)
-                    },
-                }}
-            />
             <MainFlowNavigator.Screen
                 name="MapScreen"
                 component={MapScreen}
@@ -47,6 +32,21 @@ function MainFlow() {
                             </View>
                         )
                     }
+                }}
+            />
+            <MainFlowNavigator.Screen
+                name="DeckScreen"
+                component={DeckScreen}
+                options={{
+                    title: "Deck",
+                    tabBarIcon: ({color, size}) => {
+                        return (<Icon
+                            type="material"
+                            name="storage"
+                            size={size}
+                            color={color}
+                        />)
+                    },
                 }}
             />
             <MainFlowNavigator.Screen
