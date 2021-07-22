@@ -1,13 +1,21 @@
 import React from 'react';
-import {SafeAreaView, StyleSheet, Text} from "react-native";
+import {SafeAreaView, StyleSheet, Text, Platform} from "react-native";
 import {connect} from 'react-redux'
-
-import Swipe from "../components/Swipe";
-
 import MapView from "react-native-maps";
+
+import * as actions from '../store/actions'
+import Swipe from "../components/Swipe";
 import {Card} from "react-native-elements";
+import PropTypes from "prop-types";
 
 const DeckScreen = (props) => {
+
+    const initialRegion = {
+        longitude: -122,
+        longitudeDelta: 0.04,
+        latitude: 37,
+        latitudeDelta: 0.09
+    }
 
     const renderCard = (item) => {
         return (
@@ -17,13 +25,22 @@ const DeckScreen = (props) => {
                 <Text>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Amet distinctio eaque facere nesciunt
                     nobis perspiciatis quis recusandae soluta voluptas voluptate. Accusantium aut cum ea fugiat fugit
                     inventore ipsam optio quisquam?</Text>
-                <MapView style={
-                    [
-                        styles.map,
-                    ]
-                }/>
+                <MapView
+                    scrollEnabled={false}
+                    cacheEnabled={Platform.OS === 'android'}
+                    initialRegion={initialRegion}
+                    style={
+                        [
+                            styles.map,
+                        ]
+                    }
+                />
             </Card>
         )
+    }
+
+    const onSwipeRight = (job) => {
+        props.likeJob(job)
     }
 
     const renderNoMoreCards = () => {
@@ -42,10 +59,10 @@ const DeckScreen = (props) => {
             <Swipe
                 data={props.jobs}
                 renderCard={renderCard}
-                onSwipeRight={() => {
-                }}
+                onSwipeRight={onSwipeRight}
                 onSwipeLeft={() => {
                 }}
+                keyProp={'title'}
                 renderNoMoreCards={renderNoMoreCards}
             />
 
@@ -54,13 +71,24 @@ const DeckScreen = (props) => {
 };
 
 const styles = StyleSheet.create({
-    container: {flex: 1, justifyContent: 'flex-start', alignItems: 'flex-start'},
+    container: {
+        flex: 1,
+        justifyContent: 'flex-start',
+        alignItems: 'flex-start',
+        marginTop: 20,
+    },
     map: {
-        height: 200,
+        marginTop: 20,
+        height: 300,
         width: '100%',
 
     },
 });
+
+DeckScreen.propTypes = {
+    likeJob: PropTypes.func.isRequired,
+    jobs: PropTypes.array.isRequired,
+};
 
 const mapStateToProps = (state) => {
     return {
@@ -68,4 +96,4 @@ const mapStateToProps = (state) => {
     }
 }
 
-export default connect(mapStateToProps, null)(DeckScreen);
+export default connect(mapStateToProps, actions)(DeckScreen);

@@ -1,5 +1,5 @@
 import axios from 'axios'
-import {FETCH_JOBS} from "./types";
+import {CLEARED_LIKED_JOBS, FETCH_JOBS, LIKE_JOB} from "./types";
 import reverseGeocode from 'latlng-to-zip'
 import qs from 'qs'
 
@@ -41,5 +41,18 @@ export const fetchJobs = (region, callback) => async (dispatch) => {
         callback()
     } catch (e) {
         console.log(e)
+    }
+}
+
+export const likeJob = (job) => {
+    return {
+        payload: job,
+        type: LIKE_JOB
+    }
+}
+
+export const clearLikedJobs = () => {
+    return {
+        type: CLEARED_LIKED_JOBS
     }
 }

@@ -1,12 +1,20 @@
 import React from 'react';
 import {SafeAreaView, StyleSheet, Text} from "react-native";
 import {StatusBar} from "expo-status-bar";
+import {connect} from "react-redux";
+import * as actions from '../store/actions'
+import { Button } from 'react-native-elements'
+import PropTypes from "prop-types";
 
-const SettingsScreen = () => {
+const SettingsScreen = (props) => {
     return (
         <SafeAreaView style={[styles.container, { backgroundColor: '#6a51ae' }]}>
-            <StatusBar style={'light'} backgroundColor="#6a51ae" />
-            <Text style={{ color: '#fff' }}>Settings Screen</Text>
+            <Button
+
+                title={'Reset liked jobs'}
+                onPress={() => { props.clearLikedJobs() }}
+            />
+
         </SafeAreaView>
     );
 };
@@ -15,4 +23,8 @@ const styles = StyleSheet.create({
     container: { flex: 1, justifyContent: 'center', alignItems: 'center' },
 });
 
-export default SettingsScreen;
+SettingsScreen.propTypes = {
+    clearLikedJobs: PropTypes.func.isRequired,
+};
+
+export default connect(null, actions)(SettingsScreen);

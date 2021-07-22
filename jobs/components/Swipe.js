@@ -143,24 +143,28 @@ const Swipe = (props) => {
             return props.renderNoMoreCards()
         }
 
-        return props.data.map((item, itemIndex) => {
+        const deck =  props.data.map((item, itemIndex) => {
             if (itemIndex < index) {
                 return null
             } else if (itemIndex === index) {
                 return (
-                    <Animated.View key={item.id}
-                                   style={[getCardStyle(), styles.cardStyle, styles.activeCard]}  {...panResponder.panHandlers}>
+                    <Animated.View
+                        key={item[props.keyProp]}
+                        style={[getCardStyle(), styles.cardStyle, styles.activeCard]}  {...panResponder.panHandlers}
+                    >
                         {props.renderCard(item)}
                     </Animated.View>
                 )
             }
             return <Animated.View
-                key={item.id}
+                key={item[props.keyProp]}
                 style={[styles.cardStyle, {top: 10 * (itemIndex - index)}]}
             >
                 {props.renderCard(item)}
             </Animated.View>
-        }).reverse()
+        })
+
+        return Platform.OS === 'android' ? deck.reverse() : deck.reverse()
     }
 
     return (
@@ -177,6 +181,7 @@ Swipe.propTypes = {
     onSwipeLeft: PropTypes.func.isRequired,
     renderNoMoreCards: PropTypes.func.isRequired,
     data: PropTypes.array.isRequired,
+    keyProp: PropTypes.string.isRequired
 }
 
 
