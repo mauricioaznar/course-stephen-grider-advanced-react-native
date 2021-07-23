@@ -5,7 +5,7 @@ import MapView from "react-native-maps";
 
 import * as actions from '../store/actions'
 import Swipe from "../components/Swipe";
-import {Card} from "react-native-elements";
+import {Button, Card} from "react-native-elements";
 import PropTypes from "prop-types";
 
 const DeckScreen = (props) => {
@@ -49,6 +49,14 @@ const DeckScreen = (props) => {
                 <Card.Title>
                     No more jobs
                 </Card.Title>
+                <Button
+                    title={'Back to map'}
+                    onPress={() => {
+                        props.navigation.navigate('MapScreen')
+                    }}
+
+                >
+                </Button>
             </Card>
         )
     }

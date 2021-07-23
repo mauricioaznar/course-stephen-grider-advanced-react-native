@@ -1,7 +1,6 @@
 import React from "react";
 import {createBottomTabNavigator} from "@react-navigation/bottom-tabs";
 import {Icon} from "react-native-elements";
-import {View} from "react-native";
 
 import ReviewFlow from "./ReviewFlow";
 import DeckScreen from "../screens/DeckScreen";
@@ -22,14 +21,12 @@ function MainFlow() {
                     title: "Maps",
                     tabBarIcon: ({color, size}) => {
                         return (
-                            <View>
-                                <Icon
-                                    type="font-awesome-5"
-                                    name="shopping-bag"
-                                    size={size}
-                                    color={color}
-                                />
-                            </View>
+                            <Icon
+                                type="font-awesome-5"
+                                name="map"
+                                size={size}
+                                color={color}
+                            />
                         )
                     }
                 }}
@@ -40,12 +37,14 @@ function MainFlow() {
                 options={{
                     title: "Deck",
                     tabBarIcon: ({color, size}) => {
-                        return (<Icon
-                            type="material"
-                            name="storage"
-                            size={size}
-                            color={color}
-                        />)
+                        return (
+                            <Icon
+                                type="font-awesome-5"
+                                name="clone"
+                                size={size}
+                                color={color}
+                            />
+                        )
                     },
                 }}
             />
@@ -56,14 +55,12 @@ function MainFlow() {
                     title: 'Reviews',
                     tabBarIcon: ({color, size}) => {
                         return (
-                            <View>
-                                <Icon
-                                    type="material-community"
-                                    name="logout"
-                                    size={size}
-                                    color={color}
-                                />
-                            </View>
+                            <Icon
+                                type="font-awesome-5"
+                                name="star"
+                                size={size}
+                                color={color}
+                            />
                         )
                     }
                 }}

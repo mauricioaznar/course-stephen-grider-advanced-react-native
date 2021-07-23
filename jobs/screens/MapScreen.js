@@ -2,12 +2,12 @@ import React, {useState} from 'react';
 import {Dimensions, SafeAreaView, StyleSheet} from "react-native";
 import MapView from "react-native-maps";
 import {useBottomTabBarHeight} from "@react-navigation/bottom-tabs";
-import { connect } from 'react-redux'
+import {connect} from 'react-redux'
 import * as actions from '../store/actions'
 import PropTypes from "prop-types";
 import {Button} from "react-native-elements";
 
-const MapScreen = ({ fetchJobs, navigation }) => {
+const MapScreen = ({fetchJobs, navigation}) => {
 
     const [region, setRegion] = useState({
         longitude: -122,
@@ -76,7 +76,6 @@ const styles = StyleSheet.create({
 MapScreen.propTypes = {
     fetchJobs: PropTypes.func.isRequired,
 };
-
 
 
 export default connect(null, actions)(MapScreen);

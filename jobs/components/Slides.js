@@ -18,7 +18,7 @@ const renderSlides = (data, onComplete) => {
                             containerStyle={styles.containerButtonStyle}
                             buttonStyle={styles.buttonStyle}
                             title={'Button'}
-                            onPress={onComplete} > </Button>
+                            onPress={onComplete}> </Button>
                         : undefined
                 }
             </View>

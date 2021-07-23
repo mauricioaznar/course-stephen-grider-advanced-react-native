@@ -19,7 +19,8 @@ function ReviewFlow({navigation}) {
                             onPress={() => {
                                 navigation.navigate('SettingsScreen')
                             }}
-                            iconName="chevron-right"
+                            iconType={'font-awesome-5'}
+                            iconName="cog"
                         />
                     )
                 },

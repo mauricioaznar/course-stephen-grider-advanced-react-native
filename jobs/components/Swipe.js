@@ -143,7 +143,7 @@ const Swipe = (props) => {
             return props.renderNoMoreCards()
         }
 
-        const deck =  props.data.map((item, itemIndex) => {
+        const deck = props.data.map((item, itemIndex) => {
             if (itemIndex < index) {
                 return null
             } else if (itemIndex === index) {
